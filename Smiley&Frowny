@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feedback</title>
+  <style>
+    button {
+      font-size: 2em;
+      padding: 20px;
+      margin: 20px;
+      border: none;
+      cursor: pointer;
+    }
+    #smiley { background-color: #4CAF50; color: white; }
+    #frowny { background-color: #F44336; color: white; }
+  </style>
+</head>
+<body>
+  <h1>How was your experience?</h1>
+  <button id="smiley">😊</button>
+  <button id="neutral">😐</button>
+  <button id="frowny">☹️</button>
+
+  <script>
+    // Send button data to a server or console
+    function logFeedback(type) {
+      console.log(`Feedback: ${type}`);
+      fetch("https://your-server.com/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ feedback: type, timestamp: new Date() })
+      });
+    }
+
+    // Add click events to buttons
+    document.getElementById("smiley").onclick = () => logFeedback("smiley");
+    document.getElementById("frowny").onclick = () => logFeedback("frowny");
+  </script>
+</body>
+</html>
